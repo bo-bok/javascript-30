@@ -59,6 +59,31 @@
 
 <script>
 
+  function playSound(e){
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+    if(!audio) return; //stop function running all together if not included key is pressed
+    audio.currentTime = 0; // rewind to the start
+    audio.play();
+
+    key.classList.add('playing'); // add the 'playing' class to any key that is pressed
+  }
+
+
+  function removeTransition(e){
+    if(e.propertyName !== 'transform') return; // skip it if it's not a transform type of transition
+      this.classList.remove('playing'); // remove the playing class from key once transition is done
+  }
+
+
+  const keys = document.querySelectorAll('.key'); //listen on each key for when the tranisiton happens.
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  // vanilla js: when you have an array, you cannot listen in on every one of them. You must explicitly loop through them and attach an event listener. When transition is ending, we remove it.
+
+  // call playSound() on keydown 
+  window.addEventListener('keydown', playSound);
+
 </script>
 
 
