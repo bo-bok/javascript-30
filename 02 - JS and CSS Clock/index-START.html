@@ -68,15 +68,41 @@
 
     }
 
+    .hour-hand {
+      background: yellow;
+    }
+
   </style>
 
 
   <script>
+
+  const secondHand = document.querySelector('.second-hand');
+  const minsHand = document.querySelector('.min-hand');
+  const hourHand = document.querySelector('.hour-hand');
+
     function setDate() {
       const now = new Date();
+
+      // SECONDS HAND
       const seconds = now.getSeconds(); // get seconds of the current minute
-      // console.log(seconds);
+      const secondsDegrees = ((seconds / 60) * 360) + 90; // translate seconds into a degrees (for the hand). 90 offsets defualt 90 degrees for positioning.
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      console.log(seconds);
+
+      // MINUTES HAND
+      const mins = now.getMinutes();
+      const minsDegrees = ((mins / 60) * 360) + 90;
+      minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+      console.log(mins);
+
+      // HOURS HAND
+      const hours = now.getHours();
+      const hoursDegrees = ((hours / 12) * 360) + 90;
+      hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+      console.log(hours);
     }
+
 
     setInterval(setDate, 1000); // update every second
 
