@@ -61,6 +61,11 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: 100%; /* tranform from the end point, instead of default (centre, 50%)*/
+      transform: rotate(90deg); /* set start rotation of element */
+      transition: all 0.05s; /* slows the transition so we can see it in action, clock hands glides effect */
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1); /* clock hands bounce effect */
+
     }
 
   </style>
