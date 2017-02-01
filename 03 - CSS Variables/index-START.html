@@ -37,6 +37,7 @@
     .hl {
       color: var(--base);
     }
+
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -62,7 +63,19 @@
     }
   </style>
 
+
   <script>
+    const inputs = document.querySelectorAll('.controls input'); // select all inputs on page
+
+    function handleUpdate(){
+    const suffix = this.dataset.sizing || '';
+    // dataset is an object that will contain all the data attributes from that specific element.
+    }
+
+    // listen for a change event on each of the inputs and call handle update func
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
   </script>
 
 </body>
