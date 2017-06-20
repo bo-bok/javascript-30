@@ -76,17 +76,40 @@
   <script>
 
     const secondHand = document.querySelector('.second-hand');
-    
+
+    const minuteHand = document.querySelector('.min-hand');
+
+    const hourHand = document.querySelector('.hour-hand');
+
     function setDate() {
-      console.log(seconds);
       const now = new Date();
-      const seconds = now.Seconds();
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      const hour = now.getHours();
+
       // next, we must turn this into a degree?
       // 0 seconds = 0 degrees
       // 60 seconds = 360 degrees
-      const secondsDegrees = ((seconds / 60) * 360);
+      const secondsDegrees = ((seconds / 60) * 360) + 90; // offset 90 degrees to account for the initial positioning we place on the hands in the css
+      const minutesDegrees = ((minutes / 60) * 360) + 90;
+
+      const hoursDegrees = ((minutes / 12) * 60) + 90;
 
 
+      // manipulate DOM
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+      hourHand.style.transform = `rotate(${hoursDegrees}deg)`
+      // next, making the hand move proportionally to time
+
+      console.log(hour + 'hour', minutes + 'minutes', seconds + 'seconds');
+
+      // strectch goal - IF the hands ae at 90 deg angle, temporarily remove the transform and reapply it after
+      //
+      // why it does this 'woop'? We get to that initial 90 deg that we set, and instead of going forward, we go all the way backwards to get to where we want
+      //
     }
 
     setInterval(setDate, 1000);
