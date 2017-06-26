@@ -1,3 +1,5 @@
+<!-- Force myself to get better at array methods -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +32,22 @@
     const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
 
     // Array.prototype.filter()
+    // MDN: filter() creates a new array with all elements that pass the test implemented by the provided function
+    // me: so we can think of filter as the admissions process for a highly selective school. If applications (elements in the array), don't pass the test, they don't form part of the new class(the new array)
+
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const inventorsBornIn1500s = inventors.filter(function(inventor){
+      if (inventor.year >= 1500 && inventor.year < 1600) {
+        return true; // keep it
+      } else {
+        return false;
+      }
+    })
+    console.table(inventorsBornIn1500s);
+
+    // my solution did not make use of a conditional statement
+    // return inventors.year >= 1500 && inventors.year < 1600
+
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
