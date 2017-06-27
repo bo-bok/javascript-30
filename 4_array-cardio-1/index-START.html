@@ -42,7 +42,7 @@
       } else {
         return false;
       }
-    })
+    });
     console.table(inventorsBornIn1500s);
 
     // my solution did not make use of a conditional statement
@@ -50,16 +50,53 @@
 
 
     // Array.prototype.map()
+    // always returns the sam amount of items as we give it
     // 2. Give us an array of the inventors' first and last names
+    const inventorsLastnames = inventors.map(function(inventor) {
+      return `${inventor.first} ${inventor.last}`;
+    });
+    console.log(inventorsLastnames);
 
     // Array.prototype.sort()
+    // works by comparing items, e.g. is person 1 older than person b, if so put them on top (return 1), or negative 1 (bubbles items up and down in the array)
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const inventorsOldestToYoungest = inventors.sort(function(a, b) {
+      // compare person a and b
+      if (a.year > b.year){
+        return 1;
+      }
+      else {
+        return -1;
+      }
+    });
+
+    console.log(inventorsOldestToYoungest); // returns an array of objects
 
     // Array.prototype.reduce()
+    // cleaner for loop? removes need for 'crazy square bracket [i]'
+    // reduce gives you a kind of running total of what you returned from the function last time
+    // good for adding things up
+
     // 4. How many years did all the inventors live?
+    const totalYearsLived = inventors.reduce((total, inventor) => {
+      return total + (inventor.passed - inventor.year);
+    }, 0);
+    console.log(totalYearsLived);
 
     // 5. Sort the inventors by years lived
+    const sortedByYearsLived = inventors.sort(function(a, b) {
+      const lastGuy = a.passed - a.year;
+      const nextGuy = b.passed - b.year;
 
+      if (lastGuy > nextGuy) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+
+    console.table(sortedByYearsLived);
+    
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
